@@ -1,0 +1,22 @@
+server:
+  port: 9090
+  
+spring:
+  application:
+    name: cpm-service
+   
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+   
+info:
+  application: ${spring.application.name}   
+  instance: ${spring.application.name}:${spring.application.instance_id:${random.value}} 
+      
+      
+logging:
+  level: 
+    root: info       
+      
+      

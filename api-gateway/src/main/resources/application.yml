@@ -1,0 +1,29 @@
+server:
+  port: 8761
+  
+spring:
+  application:
+    name: api-gateway
+    
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ 
+
+      
+zuul: 
+  routes:
+    cpm: 
+      path: /cpm-service/**
+      serviceId: cpm-service
+    pilotage: 
+      path: /pilotage-service/**
+      serviceId: pilotage-service
+   
+info:
+  application: ${spring.application.name}   
+  instance: ${spring.application.name}:${spring.application.instance_id:${random.value}} 
