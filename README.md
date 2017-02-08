@@ -35,6 +35,15 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ 
 ```
+
+### Eureka Server pom.xml Configuration
+```pom.xml
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka-server</artifactId>
+</dependency>
+```
+
 ## Eureka Client
 
 ### Eureka Client Application Configuration
@@ -61,4 +70,12 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+```
+
+### Eureka Client pom.xml Configuration
+```pom.xml
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka</artifactId>
+</dependency>
 ```
