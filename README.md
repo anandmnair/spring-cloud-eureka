@@ -93,7 +93,7 @@ Spring Boot Test for testing Rest Controllers
 </dependency>
 ```
 
-### Test Case
+### Test Case 
 ```java
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -117,5 +117,23 @@ public class CpmMicroServiceApplicationTests {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 			.andExpect(content().string("home.."));
 	}
+}
+```
+
+### Test Case with Random Port
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class RandomPortExampleTests {
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+
+	@Test
+	public void exampleTest() {
+		String body = this.restTemplate.getForObject("/home", String.class);
+		assertThat(body).isEqualTo("home..");
+	}
+
 }
 ```
