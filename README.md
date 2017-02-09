@@ -79,3 +79,43 @@ eureka:
 	<artifactId>spring-cloud-starter-eureka</artifactId>
 </dependency>
 ```
+
+
+## Test
+Spring Boot Test for testing Rest Controllers
+
+### Test Dependency
+```pom.xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-test</artifactId>
+	<scope>test</scope>
+</dependency>
+```
+
+### Test Case
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@WebAppConfiguration
+public class CpmMicroServiceApplicationTests {
+
+	@Autowired
+	private WebApplicationContext wac;
+
+	private MockMvc mockMvc;
+
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+	}
+
+	@Test
+	public void getHome() throws Exception {
+		this.mockMvc.perform(get("/home").accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+			.andExpect(content().string("home.."));
+	}
+}
+```
